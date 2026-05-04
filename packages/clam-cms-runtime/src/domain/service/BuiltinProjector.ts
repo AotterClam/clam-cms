@@ -1,5 +1,6 @@
 import {
   CLAM_BIND_KEYWORD,
+  CLAM_BIND_VALUES,
   type ClamBindValue,
   type SchemaManifest,
 } from "@aotterclam/clam-cms-spec";
@@ -57,7 +58,9 @@ export function projectAndStamp(args: ProjectAndStampArgs): Record<string, unkno
 function bindValueOf(propDef: unknown): ClamBindValue | undefined {
   if (typeof propDef !== "object" || propDef === null) return undefined;
   const v = (propDef as Record<string, unknown>)[CLAM_BIND_KEYWORD];
-  if (v === "ctx.user" || v === "ctx.staff" || v === "now") return v;
+  if (typeof v === "string" && (CLAM_BIND_VALUES as readonly string[]).includes(v)) {
+    return v as ClamBindValue;
+  }
   return undefined;
 }
 
