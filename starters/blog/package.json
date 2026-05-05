@@ -17,6 +17,7 @@
     "@aotterclam/clam-cms-runtime": "workspace:*",
     "@aotterclam/clam-cms-cloudflare": "workspace:*",
     "hono": "^4.6.20",
+    "marked": "^14.1.3",
     "yaml": "^2.6.1"
   },
   "devDependencies": {
