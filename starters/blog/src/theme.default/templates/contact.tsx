@@ -2,8 +2,8 @@
 import { html, raw } from "hono/html";
 import { marked } from "marked";
 import type { SiteConfig } from "@aotterclam/clam-cms-spec";
-import { Layout } from "./components/Layout.js";
-import { bundleFor } from "../i18n/index.js";
+import { Layout } from "../components/Layout.js";
+import { bundleFor } from "../../i18n/index.js";
 
 const markedOptions = { gfm: true, breaks: false } as const;
 
