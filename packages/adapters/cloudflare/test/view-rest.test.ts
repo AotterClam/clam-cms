@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import type { Manifest } from "@aotterclam/clam-cms-spec";
 import { createCmsRef } from "../src/mount/bootRuntimeOnce.js";
 import { mountServerEndpoints } from "../src/mount/mountServerEndpoints.js";
-import { InMemoryDatabase } from "../../clam-cms-runtime/test/fakes/database.js";
+import { InMemoryDatabase } from "../../../clam-cms-runtime/test/fakes/database.js";
 import {
   InMemoryKv,
   StubAssetServer,

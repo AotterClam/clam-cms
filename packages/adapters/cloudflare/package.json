@@ -3,11 +3,11 @@
   "version": "0.0.7-alpha",
   "description": "Cloudflare Workers adapter for clam-cms. Hono-based mountServerEndpoints / mountMcp / mountPublicRoutes. Better Auth (admin + mcp plugins) for sign-in + bearer-token validation.",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/AotterClam/clam-cms/tree/main/packages/clam-cms-cloudflare",
+  "homepage": "https://github.com/AotterClam/clam-cms/tree/main/packages/adapters/cloudflare",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AotterClam/clam-cms.git",
-    "directory": "packages/clam-cms-cloudflare"
+    "directory": "packages/adapters/cloudflare"
   },
   "type": "module",
   "sideEffects": false,
