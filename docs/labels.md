@@ -28,7 +28,7 @@ For package README or package-local docs changes, prefer the package area label 
 |---|---|
 | `area:runtime` | `packages/clam-cms-runtime` behavior, ports, use cases, dispatcher, render, MCP runtime. |
 | `area:spec` | `packages/clam-cms-spec`, manifest parsing, validation, diagnostics, CLI, spec types. |
-| `area:cf` | `packages/clam-cms-cloudflare`, Workers adapter, D1/KV/ASSETS wiring, Cloudflare deploy behavior. |
+| `area:cf` | `packages/adapters/cloudflare`, Workers adapter, D1/KV/ASSETS wiring, Cloudflare deploy behavior. |
 | `area:starters` | `starters/*` consumer templates and starter validation. |
 | `area:skills` | `skills/*` agent briefs and install/extend/provision workflows. |
 | `area:admin-ui` | `packages/clam-cms-admin-ui` React admin SPA. |

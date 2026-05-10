@@ -4,7 +4,7 @@ import type { Manifest } from "@aotterclam/clam-cms-spec";
 import { TemplateRegistry } from "@aotterclam/clam-cms-runtime";
 import { createCmsRef } from "../src/mount/bootRuntimeOnce.js";
 import { mountPublicRoutes } from "../src/mount/mountPublicRoutes.js";
-import { InMemoryDatabase } from "../../clam-cms-runtime/test/fakes/database.js";
+import { InMemoryDatabase } from "../../../clam-cms-runtime/test/fakes/database.js";
 import {
   InMemoryKv,
   StubAssetServer,

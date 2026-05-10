@@ -125,7 +125,7 @@ mkdir -p /private/tmp/clam-pack-check
 pnpm -C packages/clam-cms-spec pack --pack-destination /private/tmp/clam-pack-check
 pnpm -C packages/clam-cms-admin-ui pack --pack-destination /private/tmp/clam-pack-check
 pnpm -C packages/clam-cms-runtime pack --pack-destination /private/tmp/clam-pack-check
-pnpm -C packages/clam-cms-cloudflare pack --pack-destination /private/tmp/clam-pack-check
+pnpm -C packages/adapters/cloudflare pack --pack-destination /private/tmp/clam-pack-check
 ```
 
 Confirm each tarball contains only intended `dist`, `README.md`,
