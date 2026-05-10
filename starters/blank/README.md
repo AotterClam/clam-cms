@@ -5,7 +5,8 @@ frontend (Next.js, Astro, SvelteKit, native iOS/Android, partner
 integration) and want clam-cms purely as a content + auth + MCP backend.
 
 If you want a working public site out of the box with HTML chrome,
-i18n, theme stack, and contact form, use [`starters/publication`](../publication)
+i18n, theme stack, and contact form, use
+[`AotterClam/clam-cms-starter-publication`](https://github.com/AotterClam/clam-cms-starter-publication)
 instead.
 
 ## URL surface
