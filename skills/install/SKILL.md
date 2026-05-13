@@ -1,6 +1,6 @@
 ---
 name: clam-cms install
-description: Install a clam-cms consumer project. This Skill is interview-driven — it elicits the user's purpose, audience, timing, and identity, scaffolds the project via create-clam-cms, then delegates the Mantle welcome letter to a background subagent. Use when the user pasted a composed-skill URL from clam-cms-landing's `/skill/install?type=<archetype>&theme=<theme>` endpoint, or when starting from an empty repo.
+description: Install a clam-cms consumer project. This Skill is interview-driven — it elicits the user's purpose, audience, timing, and identity, scaffolds the project via create-clam-cms, then delegates the Mantle welcome letter to a background subagent. Use when the user pasted a composed-skill URL from the landing page at https://cms.aotterclam.ai/skill/install?type=<archetype>&theme=<theme>, or when starting from an empty repo.
 when_to_invoke: |
   Empty repo + landing-page composed-skill prompt; or the user describes a site they want to build. The composed URL already inlined the per-archetype hint with this brief.
 applies_to: clam-cms@v0.1.0
