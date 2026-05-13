@@ -112,18 +112,24 @@ Show both drafts when you synthesize; user confirms or corrects.
 
 **Other observations — capture without pushing.** Emotional weight, dates that matter, things-not-to-touch, futures — let them surface naturally during the archetype probes. Don't checklist them. Mantle uses whatever you noticed; she doesn't need everything.
 
-### Synthesize and confirm
+### Synthesize and confirm — conversationally, not as a config table
 
-Before running `create-clam-cms`: write back a 2-3 sentence recap in the user's language using their words (not marketing-speak paraphrases). List the dispatch values explicitly:
+Before running `create-clam-cms`: rehearse the install back in the user's language as 2-3 plain sentences. Translate every technical token to something a non-engineer can read:
 
-- archetype: `<from URL>`
-- brand: `<from interview>`
-- locales: `<list>` (canonical: `<first>`)
-- description: `<one-line draft, user's language>`
-- summary: `<one-line install description, user's language>`
-- github identity: `<gh-login>`
+- `zh-TW` → "繁體中文（台灣）"
+- `en` → "英文"
+- `github_owner` → "GitHub 帳號"
+- `--locales zh-TW,en` → "主要中文，附帶英文版"
+- archetype names → use the site type's everyday meaning ("內容發佈站" / "個人介紹站" / "需求收集表"), not the codeword
 
-The user confirms or corrects each value. **Don't run `create-clam-cms` until every CLI dispatch value above is set and explicitly confirmed.**
+Example rehearsal: "OK 我整理一下：你要開的是『拎杯有練』，一個用繁體中文、給台灣讀者看的內容發佈站；網站歸到你 guyspy 這個 GitHub 帳號管。對嗎？"
+
+Then surface description + summary drafts as separate sentences for the user to nod / tweak:
+
+- "網站描述（會放在每頁的 SEO 標籤）：『...一行...』"
+- "首次安裝的紀錄條目：『首次安裝。』 或想換句別的也行"
+
+The user confirms or tweaks in natural language. Pull dispatch values out of the exchange. **Don't run `create-clam-cms` until the user has nodded at the rehearsal.** Never dump a `field: value` config table — that's an engineering surface, not a user-facing one.
 
 ## If the archetype is roadmap
 
@@ -159,33 +165,53 @@ If the archetype hint says `status: roadmap`, follow its **Refuse path** — the
    pnpm typecheck
    ```
 
-   `pnpm validate` will emit `MANTLE_LETTER_NOT_WRITTEN` at this point — expected, you haven't run the Mantle subagent yet. The diagnostic clears once step 8 finishes. Non-zero on anything else → surface `code` + `suggestion` verbatim.
+   `pnpm validate` emits `MANTLE_LETTER_NOT_WRITTEN` at this point — expected, no letter yet. The diagnostic clears once the Mantle subagent finishes (step 9). Anything else non-zero → surface `code` + `suggestion` verbatim.
 
-6. **Write the non-letter `mantle/site.md` sections in your normal register.** The Mantle subagent (step 8) only owns `## welcome` + the closing handoff line + `## editor first_prompt:`. You fill:
+6. **Pre-provision dialogue — preview + draft together (this is a chatter zone, not a checklist).**
 
-   - `## site` — one paragraph reflecting why this site exists (from the interview).
-   - `## voice` — a few lines of register markers you observed.
-   - `## history` — one paragraph: what was decided, what the user said, what's open. Capture observed emotional weight here too — the Mantle subagent reads it.
+   Before writing `mantle/site.md` prose or dispatching the Mantle subagent, open a small conversation with the user. The goals are (a) let them peek at what just got built, (b) seed a draft post or two together so day-one isn't empty, (c) **draw more voice material out of the user through writing concretely** rather than asking abstract "what's your register" questions.
 
-7. **Get the Mantle subagent prompt:**
+   A shape that works (adapt freely; don't read this off like a script):
+
+   - Briefly describe what's in the project — "後台空的，posts collection 空的，contact 表單還掛著但 Turnstile 之後 provision 才接". Show the user where you are.
+   - Offer: "deploy 之前我可以幫你寫 1–2 篇 draft 放著，你 deploy 後登入就有東西看，順便對一下語氣。要不要？" If no, skip to step 7. If yes, continue.
+   - Propose 2–4 post topics anchored in what the interview surfaced (training log, a parenting moment, a brand-voice opener, etc.). Let them pick, add, or kill any. The picking/killing itself reveals priorities.
+   - Draft the chosen post(s). Show them. Let the user react — "再狂一點 / 太裝 / 這句砍掉 / 第一人稱不要拘謹". Each reaction is gold for voice elicitation.
+   - For cover images: use Unsplash. Pick a keyword from the draft content. **Verify every Unsplash URL resolves (HEAD request → 200 + content-type starting `image/`) before embedding.** Don't fabricate image IDs from training memory; if you can't verify, leave the cover slot empty and tell the user.
+   - When the drafts feel like the user's voice, ask if they want to keep them (saved into the scaffold somewhere reasonable — `mantle/drafts/<slug>.md` is a fine place; provision/admin can pick them up later) or just discard them now that they served their voice-elicitation purpose.
+
+   This step's length is responsive to the user. Curt user / no-deadline / "just go" → keep it to one offer and skip on a no. Engaged user → spend 5–10 minutes drafting together. The investment here pays off in the next step.
+
+7. **Write the non-letter `mantle/site.md` sections + the editor `first_prompt:` body in your normal register.**
+
+   You fill these — Mantle (the subagent in step 9) only owns the welcome letter cards. Use what came out of the interview + step 6's drafting dialogue. **Reflect what the user said and how they reacted.** Imagination is fine where the user left blank space; don't fabricate vocabulary they pushed back on or never used.
+
+   - `## site` — one paragraph reflecting why this site exists.
+   - `## voice` — a few lines of register markers, with priority on phrases the user actually used / words they killed during drafting / titles they liked vs hated. If voice didn't surface concretely, write SHORT; honest brevity beats invented detail.
+   - `## history` — one paragraph: what was decided, what the user said in their words, what's still open. Note any emotional weight (excited / anxious / curt / grieving). If you drafted posts in step 6, mention the drafts + how user reacted — Mantle reads this as transcript material.
+   - `## editor first_prompt:` body — mechanical fill. Copy the archetype hint's `Editor first-prompt template` block, substitute `<<BRAND>>` with the actual brand, paste as plain text under the YAML `first_prompt: |` key (indented properly).
+
+8. **Get the Mantle subagent prompt:**
 
    ```bash
    pnpm -s mantle:prompt > /tmp/mantle-letter-prompt.md
    ```
 
-   `-s` (silent) suppresses pnpm's per-script banner so the file is just the prompt body. The script reads `mantle/site.md` (frontmatter + your `## site` / `## voice` / `## history` sections), fetches the archetype hint from `clam-cms-starters`, substitutes `<<MANTLE_*>>` placeholders in the scaffolded `mantle-subagent-prompt.md`, and prints the filled prompt to stdout. It fails fast if any of the three sections are still template placeholders — fill them first.
+   `-s` suppresses pnpm's banner so the file is just the prompt body. The script reads `mantle/site.md` (frontmatter + your `## site` / `## voice` / `## history` sections), fetches the archetype hint from `clam-cms-starters`, substitutes `<<MANTLE_*>>` placeholders in the scaffolded `mantle-subagent-prompt.md`, prints to stdout. Fails fast if any of the three sections still hold template placeholders.
 
-8. **Dispatch the Mantle subagent (in background)** with the contents of `/tmp/mantle-letter-prompt.md` as its only prompt body. Use a `general-purpose` subagent with `run_in_background: true`.
+9. **Dispatch the Mantle subagent (in background)** with `/tmp/mantle-letter-prompt.md` as its only prompt body. Use a `general-purpose` subagent with `run_in_background: true`.
 
-   **You stay in your normal register throughout.** You never write the welcome letter yourself; Mantle's voice is encapsulated in the subagent prompt template that `pnpm mantle:prompt` filled. This is the whole reason for the delegation — register isolation.
+   The subagent writes **three welcome cards** (card1 with Mantle's self-intro + a noticed detail; card4 — when you need me back; card5 — done + closing line) plus the closing handoff line at the end of `## welcome`. Cards 2 (mcp install command) and 3 (editor first prompt) are mechanical — admin UI renders them at display time from `<SITE_URL>`, the brand, and your filled `## editor first_prompt:`. They don't live in `mantle/site.md`.
+
+   **You stay in your normal register throughout.** You never write the welcome letter yourself; Mantle's voice is encapsulated in the subagent prompt template that `pnpm mantle:prompt` filled. This is the whole reason for the delegation — register isolation. Don't peek-and-confirm the cards before they're written; the letter is a small surprise the user discovers in `mantle/site.md`.
 
    While the subagent works, prepare provision context: `gh auth status`, confirm the GitHub identity from the interview matches.
 
-9. **When the Mantle subagent completes**, run `pnpm validate` again — `MANTLE_LETTER_NOT_WRITTEN` should be gone. If it still fires, one or more `## welcome` cards weren't filled; check the subagent's reply for what went wrong, fix or re-dispatch.
+10. **When the Mantle subagent returns**, run `pnpm validate` again — `MANTLE_LETTER_NOT_WRITTEN` clears. If it still fires, card1 / card4 / card5 weren't all filled; check the subagent's reply for what went wrong, fix or re-dispatch.
 
-10. **Commit.** If step 4 produced an adjustment, that's its own commit (`adjust: drop contact form per interview`). Then the main commit: `mantle: notes from install interview`.
+11. **Commit.** If step 4 produced an adjustment, that's its own commit. Then the main commit: `mantle: notes from install interview`.
 
-11. **Continue to provision — don't push a URL onto the user.** Provision is the next phase in the same conversation. Replace `install` with `provision` in the composed URL you read at the start of this Skill, keep the same `?type=` + `?theme=` query, fetch that URL (WebFetch / raw GH / however your runtime fetches markdown), and follow it. Fall back to `https://raw.githubusercontent.com/AotterClam/clam-cms/develop/skills/provision/SKILL.md` if the landing origin isn't in your working context. The user's next involvement is supplying the Cloudflare API token when provision asks — everything before that is your job, not theirs. Don't promise production-readiness until provision completes and a second agent connects through MCP.
+12. **Continue to provision — don't push a URL onto the user.** Provision is the next phase in the same conversation. Replace `install` with `provision` in the composed URL you read at the start, keep the same `?type=` + `?theme=` query, fetch that URL, follow it. Fall back to `https://raw.githubusercontent.com/AotterClam/clam-cms/develop/skills/provision/SKILL.md` if the landing origin isn't in working context. The user's next involvement is supplying the Cloudflare API token when provision asks — everything before that is your job. Don't promise production-readiness until provision completes and a second agent connects through MCP.
 
 ## Adjustment window — between scaffold and provision
 
