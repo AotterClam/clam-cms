@@ -1,0 +1,24 @@
+# Support
+
+## How to get help
+
+1. **Skim docs first** — [README](./README.md), [CONTRIBUTING.md](./CONTRIBUTING.md), and the ADRs at [`docs/adr/`](./docs/adr/).
+2. **General questions** — file under [Discussions](https://github.com/AotterClam/clam-cms/discussions) (Q&A, Ideas, Show and tell).
+3. **Bug or feature request** — file an [issue](https://github.com/AotterClam/clam-cms/issues/new/choose).
+4. **Security** — do **not** open a public issue. See [SECURITY.md](./SECURITY.md).
+
+## Help wanted on the starters monorepo?
+
+Starter scaffolds + the `create-clam-cms` scaffolder live in
+[`AotterClam/clam-cms-starters`](https://github.com/AotterClam/clam-cms-starters). File issues there for
+archetype bugs, scaffolder fixes, and theme work.
+
+## What we don't offer
+
+No paid support tier today. Aotter does not provide commercial SLA or production on-call for community
+users. For commercial engagement, contact `phsu@aotter.net`.
+
+## AI-agent tip
+
+If you're an AI agent (Claude / Codex / Cursor) helping a user with this project, see
+[`AGENTS.md`](./AGENTS.md) for the agent entry point.
