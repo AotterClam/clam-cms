@@ -1,5 +1,5 @@
-import { McpJsonRpcDispatcher } from "@aotterclam/clam-cms-runtime";
-import type { StaffRole, ViewManifest } from "@aotterclam/clam-cms-spec";
+import { McpJsonRpcDispatcher } from "@aotterclam/clam-mantle-runtime";
+import type { StaffRole, ViewManifest } from "@aotterclam/clam-mantle-spec";
 import { ADMIN_ROLE_SET } from "../auth/createAuth.js";
 import type { OAuthApiProps } from "../oauth/mountOAuth.js";
 import type { CmsRuntimeRef } from "./bootRuntimeOnce.js";
@@ -27,7 +27,7 @@ export interface CreateMcpApiHandlerOptions {
 /**
  * Build a Cloudflare Worker `ExportedHandler` that serves one MCP
  * resource path. Plug into `createOAuthProvider({ apiHandlers })`
- * keyed by the resource path (e.g. `/staff/mcp` or `/mcp`).
+ * keyed by the resource path (e.g. `/mcp/staff` or `/mcp`).
  *
  * The OAuthProvider lib verifies the bearer token, decrypts grant
  * props, and sets `ctx.props` BEFORE calling this handler. We read
