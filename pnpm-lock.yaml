@@ -145,8 +145,8 @@ importers:
         specifier: workspace:*
         version: link:../mantle-spec
       marked:
-        specifier: ^14.1.3
-        version: 14.1.4
+        specifier: ^18.0.3
+        version: 18.0.3
       zod:
         specifier: ^4.4.2
         version: 4.4.3
@@ -1834,9 +1834,9 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
-  marked@14.1.4:
-    resolution: {integrity: sha512-vkVZ8ONmUdPnjCKc5uTRvmkRbx4EAi2OkTOXmfTDhZz3OFqMNBM1oTTWwTr4HY4uAEojhzPf+Fy8F1DWa3Sndg==}
-    engines: {node: '>= 18'}
+  marked@18.0.3:
+    resolution: {integrity: sha512-7VT90JOkDeaRWpfjOReRGPEKn0ecdARBkDGL+tT1wZY0efPPqkUxLUSmzy/C7TIylQYJC9STISEsCHrqb/7VIA==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   micromatch@4.0.8:
@@ -3428,7 +3428,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  marked@14.1.4: {}
+  marked@18.0.3: {}
 
   micromatch@4.0.8:
     dependencies:
