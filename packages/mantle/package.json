@@ -1,9 +1,9 @@
 {
   "name": "@aotterclam/mantle",
-  "version": "0.0.11-alpha.3",
+  "version": "0.0.11-alpha.6",
   "description": "Umbrella entry for @aotterclam/mantle. Adopters install this one package and import from subpaths: /spec, /runtime, /cloudflare, /admin-ui. Sub-packages remain individually installable on npm for tooling / alt-adapter authors. The Netlify adapter ships as a private workspace stub in v0.1 — its subpath will be added when the impl lands in v0.2.",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/AotterClam/mantle/tree/main/packages/mantle",
+  "homepage": "https://github.com/AotterClam/mantle/tree/develop/packages/mantle",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AotterClam/mantle.git",
@@ -49,14 +49,26 @@
     "@aotterclam/mantle-runtime": "workspace:*",
     "@aotterclam/mantle-spec": "workspace:*"
   },
+  "peerDependencies": {
+    "@cloudflare/workers-oauth-provider": "^0.6.0",
+    "aws4fetch": "^1.0.20",
+    "better-auth": "^1.6.0",
+    "hono": "^4.12.0",
+    "zod": "^4.0.0"
+  },
   "scripts": {
     "prebuild": "rm -rf dist .tsbuildinfo",
     "build": "tsc -b tsconfig.lib.json",
     "typecheck": "tsc --noEmit -p tsconfig.lib.json"
   },
   "devDependencies": {
+    "@cloudflare/workers-oauth-provider": "^0.6.0",
     "@types/node": "^25",
-    "typescript": "^6.0.3"
+    "aws4fetch": "^1.0.20",
+    "better-auth": "^1.6.11",
+    "hono": "^4.12.19",
+    "typescript": "^6.0.3",
+    "zod": "^4.4.2"
   },
   "engines": {
     "node": ">=22"
