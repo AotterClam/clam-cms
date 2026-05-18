@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Github } from "lucide-react";
 import { cn } from "../lib/utils";
 
 export const CLAM_MANTLE_PACKAGE = "@aotterclam/mantle";
@@ -53,9 +52,8 @@ export function AdminAttribution(): React.ReactElement {
         href={CLAM_MANTLE_GITHUB_URL}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex items-center gap-1 hover:text-primary"
+        className="hover:text-primary"
       >
-        <Github className="size-3.5" aria-hidden />
         GitHub
       </a>
       <span aria-label={`version ${CLAM_MANTLE_VERSION}`}>v{CLAM_MANTLE_VERSION}</span>
